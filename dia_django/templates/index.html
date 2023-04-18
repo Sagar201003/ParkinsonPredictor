@@ -1,0 +1,84 @@
+{%load static%}
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parkinson prediction using Machine Learning</title>
+    {% tailwind_css %}
+  </head>
+  <body class="bg-cover flex flex-col items-center p-20" style="background-image: url('static/img/Earth.jpg');">
+    <div class="flex flex-col items-center">
+      <h1 class="text-[#FAE4B5] text-6xl tracking-widest">
+        Parkinson Predictor
+      </h1>
+      <h2 class="text-white text-3xl mt-2">
+        made using <span class="text-4xl">Machine Learning</span>
+      </h2>
+    </div>
+    <div class="items-center flex flex-col my-[10vw]" id="checkStatus">
+      <p class="text-white text-2xl">Check your status</p>
+      <button
+        class="bg-[#FAE4B5] text-black py-2 px-8 text-xl rounded font-bold flex justify-center items-center mt-2" onclick="tryIt()"
+      >
+        Try it
+      </button>
+    </div>
+    <!-- Form for taking the data to test  -->
+    <div class="mt-10 hidden" id="form">
+        <form action="/predict" class="bg-[#D9D9D9] grid rounded w-[25vw] p-5" method="post">
+          {% csrf_token %}
+          <label for="for"> Name </label>
+          <input type="text" class="input_field" name="Name"/>
+          <label for="for"> MDVP:Fo(Hz) </label>
+          <input type="text" class="input_field" name="MDVP:Fo(Hz)"/>
+          <label for="for"> MDVP:Fhi(Hz) </label>
+          <input type="text" class="input_field" name="MDVP:Fhi(Hz)"/>
+          <label for="for"> MDVP:Flo(Hz) </label>
+          <input type="text" class="input_field" name="MDVP:Flo(Hz)"/>
+          <label for="for"> MDVP:Jitter(%) </label>
+          <input type="text" class="input_field" name="MDVP:Jitter(%)"/>
+          <label for="for"> MDVP:Jitter(Abs)</label>
+          <input type="text" class="input_field" name="MDVP:Jitter(Abs)"/>
+          <label for="for"> MDVP:RAP</label>
+          <input type="text" class="input_field" name="MDVP:RAP"/>
+          <label for="for"> MDVP:PPQ</label>
+          <input type="text" class="input_field" name="MDVP:PPQ"/>
+          <label for="for"> Jitter:DDP</label>
+          <input type="text" class="input_field" name="Jitter:DDP"/>
+          <label for="for"> MDVP:Shimmer</label>
+          <input type="text" class="input_field" name="MDVP:Shimmer"/>
+          <label for="for"> MDVP:Shimmer(dB)</label>
+          <input type="text" class="input_field" name="MDVP:Shimmer(dB)"/>
+          <label for="for"> Shimmer:APQ3</label>
+          <input type="text" class="input_field" name="Shimmer:APQ3"/>
+          <label for="for"> Shimmer:APQ5</label>
+          <input type="text" class="input_field" name="Shimmer:APQ5"/>
+          <label for="for"> MDVP:APQ</label>
+          <input type="text" class="input_field" name="MDVP:APQ"/>
+          <label for="for"> Shimmer:DDA</label>
+          <input type="text" class="input_field" name="Shimmer:DDA"/>
+          <label for="for"> NHR</label>
+          <input type="text" class="input_field" name="NHR"/>
+          <label for="for"> HNR</label>
+          <input type="text" class="input_field" name="HNR"/>
+          <label for="for"> RPDE</label>
+          <input type="text" class="input_field" name="RPDE"/>
+          <label for="for"> DFA</label>
+          <input type="text" class="input_field" name="DFA"/>
+          <label for="for"> spread1</label>
+          <input type="text" class="input_field" name="spread1"/>
+          <label for="for"> spread2</label>
+          <input type="text" class="input_field" name="spread2"/>
+          <label for="for"> D2</label>
+          <input type="text" class="input_field" name="D2"/>
+          <label for="for"> PPE</label>
+          <input type="text" class="input_field" name="PPE"/>
+          <button type="submit" id="submit" class="bg-[#FAE4B5] text-black py-2 px-8 text-xl rounded font-bold flex justify-center items-center mt-2 border-[1px] border-black">Submit</button>
+        </form>
+      </div>
+    <script src="{% static 'index.js' %}"></script>
+  </body>
+</html>
